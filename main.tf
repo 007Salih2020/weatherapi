@@ -25,6 +25,11 @@ provider "azurerm" {
   features {}
 }
 
+variable "imagebuild" {
+  type        = string
+  description = "Latest Image Build"
+}
+
 
 resource "azurerm_resource_group" "weather_api" {
     name = "sal-weatherapi"
@@ -43,7 +48,7 @@ resource "azurerm_container_group" "con_weather_api" {
 
   container {
       name            = "weatherapi"
-      image           = "salih2020/weatherapi"
+      image           = "salih2020/weatherapi:${var.imagebuild}"
         cpu             = "1"
         memory          = "1"
 
